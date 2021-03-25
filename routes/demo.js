@@ -315,7 +315,7 @@ router.post("/change/", (req, res) => {
         attachments: [
           {
             filename: "prem.pdf",
-            path: "C:/Users/Prem/crudjs/prem.pdf",
+            path: __dirname + "/prem.pdf",
             contentType: "application/pdf",
           },
         ],
