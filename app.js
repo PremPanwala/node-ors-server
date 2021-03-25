@@ -12,7 +12,7 @@ var express = require("express"),
   methodOverride = require("method-override");
 var cors = require("cors");
 require("dotenv").config();
-
+const port = process.env.PORT || 5000;
 var //commentRoutes = require("./routes/comments"),
   //campgroundRoutes = require("./routes/campgrounds"),
   //indexRoutes = require("./routes/index");
@@ -33,6 +33,6 @@ app.get("/", (req, res) => {
   res.sendFile(__dirname + "/index.html");
 });
 
-app.listen(5000, process.env.IP, function () {
-  console.log("The YelpCamp Server Has Started!" + process.env.PORT);
+app.listen(port, process.env.IP, function () {
+  console.log("The YelpCamp Server Has Started!" + port);
 });
