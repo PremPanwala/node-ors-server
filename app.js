@@ -28,7 +28,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use("/public", express.static("public"));
 app.use("/demo", demo);
-app.get("/", login);
+
+app.get("/", (req, res) => {
+  res.sendFile(__dirname + "/index.html");
+});
+
 app.listen(5000, process.env.IP, function () {
   console.log("The YelpCamp Server Has Started!" + process.env.PORT);
 });
