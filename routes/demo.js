@@ -307,7 +307,11 @@ router.post("/change/", (req, res) => {
           rejectUnauthorized: false,
         },
       });
-      console.log("This is path console", __dirname + "/prem.pdf");
+      //console.log();
+      console.log(
+        "This is path console",
+        path.join(__dirname, "../", "prem.pdf")
+      );
       transporter.sendMail({
         from: "digi5technologies@gmail.com",
         to: req.body.email,
@@ -316,7 +320,7 @@ router.post("/change/", (req, res) => {
         attachments: [
           {
             filename: "prem.pdf",
-            path: __dirname + "/prem.pdf",
+            path: path.join(__dirname, "../", "prem.pdf"),
             contentType: "application/pdf",
           },
         ],
