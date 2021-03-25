@@ -216,18 +216,19 @@ router.post("/history/:ownerid", (req, res) => {
     }
   );
 });
-router.post("/change", (req, res) => {
+router.post("/change/", (req, res) => {
   console.log("In Change");
   console.log("HI bRO");
-  // console.log("email", req.body.email);
-  // console.log("final amount", req.body.bill);
-  // console.log("Rent", req.body.total);
-  // console.log("Fine", req.body.fine);
-  // console.log("name", req.body.name);
-  // console.log("phoneno", req.body.phoneno);
-  // console.log("from", req.body.ffrom);
-  // console.log("itemname", req.body.itemname);
-  // console.log("to", req.body.to);
+  console.log("email", req.body.email);
+  console.log("_id", req.body._id);
+  console.log("final amount", req.body.bill);
+  console.log("Rent", req.body.total);
+  console.log("Fine", req.body.fine);
+  console.log("name", req.body.name);
+  console.log("phoneno", req.body.phoneno);
+  console.log("from", req.body.ffrom);
+  console.log("itemname", req.body.itemname);
+  console.log("to", req.body.to);
   var f = 0;
   let students = [
     {
