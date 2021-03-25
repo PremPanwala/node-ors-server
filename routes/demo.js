@@ -307,7 +307,7 @@ router.post("/change/", (req, res) => {
           rejectUnauthorized: false,
         },
       });
-
+      console.log("This is path console", __dirname + "/prem.pdf");
       transporter.sendMail({
         from: "digi5technologies@gmail.com",
         to: req.body.email,
