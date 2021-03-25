@@ -63,7 +63,7 @@ router.post("/user-profile", upload.single("image"), (req, res, next) => {
   console.log(req.body.itemdetail);
   console.log(req.body.rent);
   console.log(req.body.fine);
-
+  console.log(req.body.image);
   const url = req.protocol + "://" + req.get("host");
   const user = new use({
     _id: new mongoose.Types.ObjectId(),
@@ -75,7 +75,7 @@ router.post("/user-profile", upload.single("image"), (req, res, next) => {
     itemdetail: req.body.itemdetail,
     rent: req.body.rent,
     fine: req.body.fine,
-    image: url + "/public/" + req.file.filename,
+    image: req.body.image,
   });
   user
     .save()
@@ -96,7 +96,9 @@ router.post("/user-profile", upload.single("image"), (req, res, next) => {
     });
 });
 
-router.post("/book", (req, res, next) => {
+router.post("/book", async (req, res, next) => {
+  let f = 0;
+
   console.log("inside book");
   // console.log(req.body.cid2);
   // console.log(req.body.oid2);
@@ -125,23 +127,61 @@ router.post("/book", (req, res, next) => {
     total: req.body.total,
     is_active: req.body.is_active,
   });
-  user
-    .save()
-    .then((result) => {
-      res.status(201).json({
-        message: "User registered successfully!",
-        userCreated: {
-          //  _id: result._id,
-          //image: result.image,
-        },
-      });
-    })
-    .catch((err) => {
-      console.log(err),
-        res.status(500).json({
-          error: err,
+
+  console.log(req.body.pid2);
+  console.log("In MYBOOKING");
+  const Users = await bk.find({ pid: req.body.pid2 });
+  //console.log(Users);
+  Users.map((x) => {
+    let fromdb = x.from;
+    let todb = x.to;
+
+    let fromUser = req.body.from;
+    let toUser = req.body.to;
+
+    fromUser = new Date(fromUser);
+    toUser = new Date(toUser);
+
+    fromdb = new Date(fromdb);
+    todb = new Date(todb);
+
+    if (
+      (fromUser <= fromdb && toUser >= fromdb) ||
+      (fromUser >= fromdb && fromUser <= todb)
+    ) {
+      console.log("cant rent");
+      f = 1;
+    }
+  });
+
+  console.log(f);
+  if (f === 0) {
+    user
+      .save()
+      .then((result) => {
+        res.status(201).json({
+          message: "User registered successfully!",
+          userCreated: {
+            //  _id: result._id,
+            //image: result.image,
+          },
         });
+      })
+      .catch((err) => {
+        console.log(err),
+          res.status(500).json({
+            error: err,
+          });
+      });
+  } else {
+    res.status(404).json({
+      message: "product is already booked",
+      userCreated: {
+        //  _id: result._id,
+        //image: result.image,
+      },
     });
+  }
 });
 
 router.post("/show", (req, res) => {

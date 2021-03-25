@@ -1,3 +1,4 @@
+require("dotenv").config();
 var express = require("express"),
   app = express(),
   bodyParser = require("body-parser"),
@@ -17,10 +18,7 @@ var //commentRoutes = require("./routes/comments"),
   //indexRoutes = require("./routes/index");
   demo = require("./routes/demo");
 
-mongoose.connect(
-  "mongodb+srv://PREM:prem0131@cluster0-9rlmb.mongodb.net/test?retryWrites=true&w=majority",
-  { useNewUrlParser: true }
-);
+mongoose.connect(process.env.DB_URL, { useNewUrlParser: true });
 const con = mongoose.connection;
 
 mongoose.set("useCreateIndex", true);
