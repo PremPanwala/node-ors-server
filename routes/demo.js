@@ -216,7 +216,7 @@ router.post("/history/:ownerid", (req, res) => {
     }
   );
 });
-router.post("/change/", (req, res) => {
+router.post("/change", (req, res) => {
   console.log("In Change");
   console.log("HI bRO");
   // console.log("email", req.body.email);
