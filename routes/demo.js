@@ -54,6 +54,10 @@ function randomString() {
   }
   return randomstring;
 }
+router.get("/sdemo",(req,res)=>{
+  res.send([{name:"prem"}])
+})
+
 
 router.post("/user-profile", upload.single("image"), (req, res, next) => {
   console.log("inside user profile");
@@ -359,11 +363,51 @@ router.post("/show2/:pid2", (req, res) => {
   });
 });
 
+/**
+ * @swagger
+ * definitions:
+ *  Users:
+ *   type: object
+ *   properties:
+ *     email:
+ *       type: string
+ *       description: hahah
+ *       example: 'prempanwala710@gmail.com'
+ *     password:
+ *       type: string
+ *       description: hahah
+ *       example: 'prem0131'
+ * 
+ */
+/**
+ * @swagger
+ * /demo/login:
+ *  post:
+ *    summary: login employee
+ *    description: login kkaro
+ *    parameters:
+ *    - name: email
+ *      description: nakh
+ *      in: formData
+ *      required: true
+ *      type: string
+ *    - name: password
+ *      description: password
+ *      in: formData
+ *      required: true
+ *      type: string
+ *    responses:
+ *       200:
+ *        description: logged in success
+ *       500:
+ *          description: logged in error
+ */
 router.post("/login", function (req, res, next) {
   var username = req.body.email;
   var password = req.body.password;
 
   var check = User.findOne({ email: username });
+  console.log(username)
   check.exec((err, data) => {
     if (err) {
       var error = {
