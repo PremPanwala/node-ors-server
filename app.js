@@ -25,7 +25,7 @@ var //commentRoutes = require("./routes/comments"),
         title: "demo API",
         version: "1.0.0",
       },
-      servers: ["http:demo.com"]
+      servers: ["https://node-ors-server.herokuapp.com/"]
     },
     apis: ["./routes/demo.js"],
   };
