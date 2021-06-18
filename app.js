@@ -24,7 +24,8 @@ var //commentRoutes = require("./routes/comments"),
       info: {
         title: "demo API",
         version: "1.0.0",
-      }
+      },
+      servers: ["http:demo.com"]
     },
     apis: ["./routes/demo.js"],
   };
