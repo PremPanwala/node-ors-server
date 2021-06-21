@@ -54,8 +54,12 @@ function randomString() {
   }
   return randomstring;
 }
+
+
+
+
 router.get("/sdemo",(req,res)=>{
-  res.send([{name:"prem"}])
+  res.status(200).send([{name:"prem"}])
 })
 
 
