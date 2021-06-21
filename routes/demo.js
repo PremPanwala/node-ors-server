@@ -59,7 +59,14 @@ function randomString() {
 
 
 router.get("/sdemo",(req,res)=>{
-  res.status(200).send([{name:"prem"}])
+  try{
+    res.status(200).send([{name:"prem"}])
+  }
+  catch(e)
+  {
+    res.status(500).send(e)
+  }
+  
 })
 
 
